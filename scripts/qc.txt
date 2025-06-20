@@ -1,0 +1,6 @@
+prefetch SRR2584863
+fastq-dump --split-files SRR2584863
+fastqc SRR2584863_1.fastq SRR2584863_2.fastq
+fastp -i SRR2584863_1.fastq -I SRR2584863_2.fastq \
+      -o SRR2584863_1_clean.fastq -O SRR2584863_2_clean.fastq \
+      --html fastp_report.html --json fastp_report.json
