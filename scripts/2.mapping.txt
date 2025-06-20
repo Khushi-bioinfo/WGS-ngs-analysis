@@ -1,0 +1,10 @@
+# Index the reference genome 
+bwa index Ecoliref.fna
+
+# Align reads
+bwa mem Ecoliref.fna SRR2584863_1_clean.fastq SRR2584863_2_clean.fastq > aligned.sam
+
+# Convert to BAM, sort, and index
+samtools view -bS aligned.sam > aligned.bam
+samtools sort aligned.bam -o aligned.sorted.bam
+samtools index aligned.sorted.bam
