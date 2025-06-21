@@ -1,4 +1,20 @@
+# Variant Calling with FreeBayes
+freebayes -f Ecoliref.fna aligned.sorted.bam > variants.vcf
+
+# Preview the variant file
+head variants.vcf
+
+# Filter variants with quality > 20
+bcftools filter -i 'QUAL > 20' variants.vcf -o filtered_variants.vcf
+
+# Convert VCF to TSV format for easier viewing
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%QUAL\n' filtered_variants.vcf > variants.tsv
+
+# Download and set up SnpEff
 wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 cd snpEff
+
+# Annotate variants using SnpEff 
 java -jar snpEff.jar -v Escherichia_coli_k_12_gca_004802935 ~/SRR2584863/filtered_variants.vcf > ~/SRR2584863/annotated_variants.vcf
+
