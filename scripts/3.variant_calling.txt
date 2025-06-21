@@ -1,1 +1,5 @@
-,
+freebayes -f Ecoliref.fna aligned.sorted.bam > variants.vcf
+head variants.vcf
+
+bcftools filter -i 'QUAL > 20' variants.vcf -o filtered_variants.vcf
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%QUAL\n' filtered_variants.vcf > variants.tsv
