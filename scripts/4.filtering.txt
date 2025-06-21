@@ -1,1 +1,4 @@
-p
+wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
+unzip snpEff_latest_core.zip
+cd snpEff
+java -jar snpEff.jar -v Escherichia_coli_k_12_gca_004802935 ~/SRR2584863/filtered_variants.vcf > ~/SRR2584863/annotated_variants.vcf
